@@ -103,7 +103,13 @@
 </head>
 <body>
 <h1>アドレスとプロフィールを登録する</h1>
-<p>　誰が誰だかわかりやすくするために。Google Apps ScriptでGET/POSTし登録したかった。</p>
+<p>　誰が誰だかわかりやすくするために。</p>
+<h2>動作しない</h2>
+<p>　Google Apps ScriptでGET/POSTし登録したかったが、CORSエラーに阻まれた。</p>
+<details><summary>エラーログ</summary>
+<pre><code>Access to fetch at 'https://script.google.com/macros/s/AKfycbwsoKbgKwuMUCsLXeVGifX2j5bDHyld3R7vfa78Qx3hTEhPtqq43ZgEdbg3UDUvRD4g8A/exec' from origin 'https://ytyaru.github.io' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.<code><pre>
+</details>
+<p>　また、なぜか登録ボタンイベントが発火せず、マストドンやミスキーボタンのイベントが発火している。意味不明。要素のidやListenerのイベント名は問題ないはずなのに。openなshadowDOMであるCustomElementがなにか悪さをしているのだろうか。どう対処すればいいか見当もつかない。</p>
 <form><fieldset>
     <legend>プロフィール</legend>
     <table>
@@ -126,6 +132,7 @@
     </table>
     <br>
     <!--<button id="regist" type="submit">登録する</button>-->
+
     <button id="regist" type="button">登録する</button>
 </fieldset></form>
 
