@@ -11,8 +11,10 @@ window.addEventListener('DOMContentLoaded', async(event) => {
         if (-1 < index) { showMyData(profiles[index]) }
     });
     */
-    document.getElementById('address').value = await window.mpurse.getAddress()
-    showMyData(await getProfile(document.getElementById('address').value))
+    if (window.hasOwnProperty('mpurse')) {
+        document.getElementById('address').value = await window.mpurse.getAddress()
+        showMyData(await getProfile(document.getElementById('address').value))
+    }
     /*
     document.getElementById('address').addEventListener('change', async(event) => {
         const j = await getProfile(event.target.value)
@@ -20,6 +22,7 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     });
     */
     document.getElementById('regist').addEventListener('click', async(event) => {
+        console.debug('登録ボタンを押した。')
         const j = makeJson()
         console.debug(j)
         const register = new ProfileRegister()
