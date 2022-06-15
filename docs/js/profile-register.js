@@ -4,7 +4,7 @@ class ProfileRegister {
     }
     #getUrl() {
         const id = 'AKfycbwsoKbgKwuMUCsLXeVGifX2j5bDHyld3R7vfa78Qx3hTEhPtqq43ZgEdbg3UDUvRD4g8A'
-        return `https://script.google.com/macros/s/${ID}/exec`
+        return `https://script.google.com/macros/s/${id}/exec`
     }
     get() { return this.client.get(this.#getUrl()) }
     #getPostData(address, profileJsonStr) { return {address: address, profile: profileJsonStr} }

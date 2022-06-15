@@ -81,33 +81,24 @@
 <script src="js/misskey-authorizer-oauth.js"></script>
 <script src="js/misskey-authorizer-miauth.js"></script>
 <script src="js/misskey-api-client.js"></script>
-
 <script src="js/misskey-note-button.js"></script>
 <script src="js/misskey-note-dialog.js"></script>
-<!--
--->
 <script src="js/webmention-requester.js"></script>
-
 <script src="js/mastodon-rest-client.js"></script>
 <script src="js/mastodon-authorizer.js"></script>
 <script src="js/mastodon-api-client.js"></script>
-<!--<script src="js/tooter.js"></script>-->
 <script src="js/toot-button.js"></script>
 <script src="js/toot-dialog.js"></script>
-<!--
--->
 <script src="js/comment.js"></script>
 <script src="js/tweet-button.js"></script>
 <script src="js/mention-section.js"></script>
 <script src="js/mpurse-send-button.js"></script>
-
 <script src="js/mastodon-instance.js"></script>
 <script src="js/mastodon-profile-generator.js"></script>
 <script src="js/misskey-profile-generator.js"></script>
-
 <script src="js/mastodon-redirect-callback-reciver.js"></script>
 <script src="js/misskey-redirect-callback-reciver.js"></script>
-
+<script src="js/profile-register.js"></script>
 <script src="js/main.js"></script>
 </head>
 <body>
@@ -116,10 +107,11 @@
 <form><fieldset>
     <legend>プロフィール</legend>
     <table>
-    <tr><th>アドレス</th><td><input id="address" value="" placeholder="モナコインのアドレス"></td></tr>
-    <tr><th>URL</th><td><input id="url" value="" placeholder="https://your.site/"></td></tr>
-    <tr><th>名前</th><td><input id="name" value="" placeholder="あなたの表示名"></td></tr>
+    <!--<tr><th>アドレス</th><td><input id="address" value="" placeholder="モナコインのアドレス" disabled required></td></tr>-->
+    <tr><th>アドレス</th><td><input id="address" value="" placeholder="モナコインのアドレス" required></td></tr>
+    <tr><th>名前</th><td><input id="name" value="" placeholder="あなたの表示名" required></td></tr>
     <tr><th>画像</th><td><input id="avatar" value="" placeholder="https://your.site/avatar.png"></td></tr>
+    <tr><th>URL</th><td><input id="url" value="" placeholder="https://your.site/"></td></tr>
     <tr><th>紹介</th><td><textarea id="description" value="" placeholder="私はこういう者です。"></textarea></td></tr>
     <tr><th>補足情報</th>
         <td>
@@ -132,53 +124,11 @@
         </td>
     </tr>
     </table>
-    <div><h3>Mastodon</h3>
-        <div id="mastodon-field"></div>
-        <button id="add-mastodon-field" type="button">＋</button><label><input id="mastodon-instance" value="" placeholder="mstdn.jp" list="mastodon-instance-candidate" autocomplete="on">：マストドン・インスタンスのドメイン名またはURL</label>
-        <datalist id="mastodon-instance-candidate">
-            <option value="mstdn.jp">mstdn.jp</option>
-            <option value="pawoo.net">pawoo.net</option>
-        </datalist>
-    </div>
-    <div><h3>Misskey</h3>
-        <div id="misskey-field"></div>
-        <button id="add-misskey-field" type="button">＋</button><label><input id="misskey-instance" value="" placeholder="misskey.io" list="misskey-instance-candidate" autocomplete="on">：ミスキー・インスタンスのドメイン名またはURL</label>
-        <datalist id="misskey-instance-candidate">
-            <option value="misskey.io">misskey.io</option>
-            <option value="misskey.dev">misskey.dev</option>
-            <option value="sushi.ski">sushi.ski</option>
-            <option value="meisskey.one">meisskey.one</option>
-        </datalist>
-    </div>
     <br>
+    <!--<button id="regist" type="submit">登録する</button>-->
     <button id="regist" type="button">登録する</button>
 </fieldset></form>
 
-<!--
-<output id="export-mastodon"></output>
-
-<form>
-    <fieldset>
-    <legend>アカウント情報を取得する</legend>
-    <label>ミスキー・インスタンスのドメイン名またはURL：<input id="misskey-instance" value="" placeholder="misskey.io" list="misskey-instance-candidate" autocomplete="on"></label>
-    <datalist id="misskey-instance-candidate">
-        <option value="misskey.io">misskey.io</option>
-        <option value="misskey.dev">misskey.dev</option>
-        <option value="sushi.ski">sushi.ski</option>
-        <option value="meisskey.one">meisskey.one</option>
-    </datalist>
-    <button id="get-misskey-account-info" type="button">認証してアカウント情報を取得する</button>
-    </fieldset>
-</form>
-<output id="export-misskey"></output>
--->
-<h2>経緯</h2>
-<table>
-<tr><th></th><th>Mastodon</th><th>Misskey</th></tr>
-<tr><th>投稿ボタン</th><td><a href="https://ytyaru.github.io/Html.Mastodon.Toot.Button.Dialog.WebComponent.Mpurse.Webmention.Requester.20220610112921/" target="_blank" rel="noopener noreferrer">※</a></th><td><a href="https://ytyaru.github.io/Html.Misskey.Note.Button.Dialog.WebComponent.Webmention.20220609193648/" target="_blank" rel="noopener noreferrer">※</a></td></tr>
-<tr><th>プロフィール取得</th><td><a href="https://ytyaru.github.io/Html.Mastodon.Account.Info.20220611094830/"  target="_blank" rel="noopener noreferrer">※</a></th><td><a href="https://ytyaru.github.io/Html.Misskey.Account.Info.20220611155603/"  target="_blank" rel="noopener noreferrer">※</a></td></tr>
-<tr><th>イベント化</th><td><a href="https://ytyaru.github.io/Html.Mastodon.RedirectCallback.Event.20220612141935/"  target="_blank" rel="noopener noreferrer">※</a></td><td><a href="https://ytyaru.github.io/Html.Misskey.RedirectCallback.Event.20220612182913/"  target="_blank" rel="noopener noreferrer">※</a></td></tr>
-</table>
 <h2>プロフィールからの投げモナボタンについて</h2>
 <p>　少なくとも以下のうちいずれかひとつの条件を満たせば、投げモナボタンを表示する。</p>
 <ul>
