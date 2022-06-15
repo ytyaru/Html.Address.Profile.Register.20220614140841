@@ -102,14 +102,25 @@
 <script src="js/main.js"></script>
 </head>
 <body>
-<h1>アドレスとプロフィールを登録する</h1>
+<h1>アドレスとプロフィールを登録する（できない）</h1>
 <p>　誰が誰だかわかりやすくするために。</p>
 <h2>動作しない</h2>
-<p>　Google Apps ScriptでGET/POSTし登録したかったが、CORSエラーに阻まれた。</p>
+<p>　Google Apps Script(GAS)でGET/POSTし登録したかったが、CORSエラーに阻まれた。</p>
 <details><summary>エラーログ</summary>
-<pre><code>Access to fetch at 'https://script.google.com/macros/s/AKfycbwsoKbgKwuMUCsLXeVGifX2j5bDHyld3R7vfa78Qx3hTEhPtqq43ZgEdbg3UDUvRD4g8A/exec' from origin 'https://ytyaru.github.io' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.<code><pre>
+<code>Access to fetch at 'https://script.google.com/macros/s/AKfycbwsoKbgKwuMUCsLXeVGifX2j5bDHyld3R7vfa78Qx3hTEhPtqq43ZgEdbg3UDUvRD4g8A/exec' from origin 'https://ytyaru.github.io' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.</code>
 </details>
-<p>　また、なぜか登録ボタンイベントが発火せず、マストドンやミスキーボタンのイベントが発火している。意味不明。要素のidやListenerのイベント名は問題ないはずなのに。openなshadowDOMであるCustomElementがなにか悪さをしているのだろうか。どう対処すればいいか見当もつかない。</p>
+<p>　このエラーをみて、<code>fetch</code>するとき<code>mode</code>を<code>no-cors</code>にしてみた。するとHTTPステータスが<code>0</code>になって返ってきた。JSONも空っぽ。こんなステータス見たことない。<a href="https://ja.stackoverflow.com/questions/36352/%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%80%9A%E4%BF%A1%E3%81%A7http-status-code-%E3%81%8C0">stackoverflow</a>によるとネットワークエラーということらしい。よくわからんが、失敗することはわかった。</p>
+<h3>GASは使えるっぽいのに</h3>
+<p>　<a href="https://script.google.com/macros/s/AKfycbwsoKbgKwuMUCsLXeVGifX2j5bDHyld3R7vfa78Qx3hTEhPtqq43ZgEdbg3UDUvRD4g8A/exec">GASでGETするURL</a>をブラウザのURLに入力すれば、ちゃんとJSONが返ってくる。ローカルの端末でも成功する。</p>
+<p>　なのにそれをこのページで<code>fetch</code>メソッドを使い実行するとCORSエラーになる。</p>
+<h4>CORSエラー？</h4>
+<p>　CORSエラーはセキュリティだと思われる。よく知らないが、たぶんGoogleサーバが、ここGitHubサーバからのリクエストを弾いているのだろう。私にはどうしようもないと思う。</p>
+<p>　エラーログにあった<a href="https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Access-Control-Allow-Origin">Access-Control-Allow-Origin</a>は、サーバ側の設定のはずで、私が編集することはできない。<p>
+<p>　まさかGASのようにAPIを作れるサービスは、すべてCORSエラーになるのか？　それではまるで使い物にならないと思うのだが……。ローカルでAPIを実行しろということなのか？　そんなバカな。では、自分でサーバを立てろと？　でもこれはGASを提供しているGoogleサーバの問題ではないのか？　サーバ側の知識がゼロなのでまったくわからん。</p>
+<h3>登録ボタンイベントが発火しない</h3>
+<p>　なぜか登録ボタンイベントが発火せず、マストドンやミスキーボタンのイベントが発火している。意味不明。要素のidやListenerのイベント名は問題ないはずなのに。</p>
+<p>　openなshadowDOMであるCustomElementがなにか悪さをしているのだろうか？　どう対処すればいいか見当もつかない。</p>
+<p>　よくみたらマストドンやミスキーボタンのイベントたち、そこらへんを適当にクリックしても発火してた。お前らは一体なんなんだ？　私は一体いつからまともに動いていると錯覚していた？</p>
 <form><fieldset>
     <legend>プロフィール</legend>
     <table>

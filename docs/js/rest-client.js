@@ -7,7 +7,7 @@ class RestClient {
     async get(url, headers) {
         const data = {
             method: 'GET',
-            mode: 'no-cors', // Google Apps Script で CORS エラーになったので追加した
+            //mode: 'no-cors', // Google Apps Script で CORS エラーになったので追加したが、HTTPステータス0で返りやがる
             headers: this.getJsonHeaders(headers),
         }
         console.debug(url)
@@ -24,7 +24,7 @@ class RestClient {
         console.debug(url)
         const data = {}
         data.method = 'POST'
-        data.mode = 'no-cors', // Google Apps Script で CORS エラーになったので追加した
+        //data.mode = 'no-cors' // Google Apps Script で CORS エラーになったので追加したが、HTTPステータス0で返りやがる
         data.headers = this.getJsonHeaders(headers)
         if (params) { data.body = body }
         console.debug(params)
